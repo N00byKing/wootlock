@@ -1,0 +1,3 @@
+[submodule "wooting-rgb-sdk"]
+	path = wooting-rgb-sdk
+	url = https://github.com/WootingKb/wooting-rgb-sdk
