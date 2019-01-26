@@ -70,7 +70,7 @@ void thrdloop() {
         } else {
             wooting_rgb_reset();
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }
 
@@ -90,6 +90,7 @@ int main() {
             contrun = false;
             scanloop.join();
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
     wooting_rgb_reset();
     return 0;
