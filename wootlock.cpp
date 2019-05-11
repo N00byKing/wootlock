@@ -64,7 +64,7 @@ void wooting_rgb_scan(int negate) {
 
 void thrdloop() {
     while (contrun) {
-        if (isRunning("dde-lock")) {
+        if (isRunning("swaylock")) {
             wooting_rgb_scan(1);
             wooting_rgb_scan(-1);
         } else {
