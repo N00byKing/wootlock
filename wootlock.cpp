@@ -4,9 +4,7 @@
 #include <thread>
 #include <iostream>
 
-extern "C" {
 #include "wooting-rgb-sdk.h"
-}
 
 static bool contrun;
 
@@ -15,7 +13,6 @@ bool isRunning(const char* name) {
    sprintf(command, "pgrep -x %s > /dev/null", name);
    return 0 == system(command);
 }
-
 
 void wooting_rgb_clr() {
     for (int i = 0; i <=20; i++) {
@@ -67,20 +64,14 @@ void thrdloop() {
         if (isRunning("swaylock")) {
             wooting_rgb_scan(1);
             wooting_rgb_scan(-1);
-        } else {
-            wooting_rgb_reset();
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }
 
 int main() {
+    std::cout << wooting_rgb_kbd_connected() << std::endl;
     std::cout << "G'day" << std::endl;
-    std::cout << "Keyboard Connection Status: " << wooting_rgb_kbd_connected() << std::endl;
-    if (!wooting_rgb_kbd_connected()) {
-        return 1;
-    }
-    wooting_rgb_reset();
     contrun = true;
     std::thread scanloop(thrdloop);
     std::string input;
