@@ -14,21 +14,6 @@ bool isRunning(const char* name) {
    return 0 == system(command);
 }
 
-void wooting_rgb_clr() {
-    for (int i = 0; i <=20; i++) {
-        for (int j = 0; j <= 5; j++) {
-            wooting_rgb_array_set_single(j, i, 0, 0, 0);
-        }
-        if (i != 0) {
-            for (int j = 0; j <= 5; j++) {
-                wooting_rgb_array_set_single(j, i-1, 0, 0, 0);
-            }
-        }
-    }
-    wooting_rgb_array_update_keyboard();
-    std::cout << "Keyboard RGB Cleared" << std::endl;
-}
-
 void wooting_rgb_scan(int negate) {
     if (negate > 0) {
         for (int i = 0; i <= 20; i++) {
@@ -64,6 +49,8 @@ void thrdloop() {
         if (isRunning("swaylock")) {
             wooting_rgb_scan(1);
             wooting_rgb_scan(-1);
+        } else {
+            wooting_rgb_reset_rgb();
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
